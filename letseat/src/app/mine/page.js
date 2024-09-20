@@ -1,11 +1,11 @@
 'use client';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation'; // useRouter 훅 추가
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 const RegisterRecipePage = () => {
-  const [newRecipe, setNewRecipe] = useState({ name: '', ingredients: '', steps: '' });
-  const router = useRouter(); // useRouter 훅 선언
+  const [newRecipe, setNewRecipe] = useState({ name: '', ingredients: '', steps: '', likes: 0 });
+  const router = useRouter();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -16,13 +16,12 @@ const RegisterRecipePage = () => {
   };
 
   const handleAddRecipe = () => {
-    // 저장된 레시피를 LocalStorage 또는 API를 통해 서버에 저장
-    let savedRecipes = JSON.parse(localStorage.getItem('recipes')) || [];
+    let savedRecipes = JSON.parse(localStorage.getItem('recipe')) || [];
     savedRecipes.push({ ...newRecipe, id: savedRecipes.length + 1 });
-    localStorage.setItem('recipes', JSON.stringify(savedRecipes));
+    localStorage.setItem('recipe', JSON.stringify(savedRecipes));
 
-    // 입력값 초기화 및 페이지 이동
-    setNewRecipe({ name: '', ingredients: '', steps: '' });
+    // Reset input values and navigate
+    setNewRecipe({ name: '', ingredients: '', steps: '', likes: 0 });
     alert('레시피가 등록되었습니다!');
     router.push('/recipezip');
   };
@@ -32,7 +31,6 @@ const RegisterRecipePage = () => {
       <div className="bg-white shadow-lg rounded-lg p-8 max-w-lg w-full">
         <h1 className="text-3xl font-bold text-center text-black-700 mb-6">나만의 레시피 등록</h1>
 
-        {/* 레시피 등록 폼 */}
         <div className="mb-6">
           <input
             type="text"
@@ -66,17 +64,16 @@ const RegisterRecipePage = () => {
           </button>
         </div>
 
-        {/* 등록된 레시피 목록으로 이동하는 링크 */}
         <div className="text-center">
           <Link href="/recipezip" className="text-blue-800 hover:underline font-medium">
             등록된 레시피 보기
           </Link>
         </div>
         <div className='text-center mt-6'>
-        <Link href="/" className='text-blue-800 hover:underline font-medium'>
-        홈으로 가기
-        </Link>
-      </div>
+          <Link href="/" className='text-blue-800 hover:underline font-medium'>
+            홈으로 가기
+          </Link>
+        </div>
       </div>
     </div>
   );

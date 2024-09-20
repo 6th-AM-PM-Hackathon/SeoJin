@@ -22,11 +22,13 @@ const PostsPage = () => {
 
   return (
     <div className="container mx-auto p-6">
+        
       <h1 className="text-2xl font-bold mb-4 flex justify-center">레시피 검색</h1>
 
       <div className="w-full flex flex-col items-center mt-8">
         {/* 검색창과 버튼 */}
-        <div className="flex justify-center mb-8">
+        <div className="flex items-center mb-4">
+          <img src="/images/logo.png" alt="로고" className="w-24 mr-4" /> {/* 로고 오른쪽에 여백 추가 */}
           <input
             type="text"
             className="w-96 h-12 px-3 border border-gray-400 rounded-lg focus:ring-black"
@@ -35,10 +37,10 @@ const PostsPage = () => {
             onChange={(e) => setSearchQuery(e.target.value)} // Update searchQuery on input change
           />
           <button
-            className="w-24 h-12 bg-sky-500 text-white rounded-lg hover:bg-sky-300 focus:ring-1 focus:ring-black ml-2"
+            className="w-24 h-12 bg-sky-500 text-white rounded-lg hover:bg-sky-300 focus:ring-1 focus:ring-black ml-2" // 버튼 왼쪽 여백 추가
             onClick={() => setFilteredPosts(posts.filter(post =>
               post.name.toLowerCase().includes(searchQuery.toLowerCase())
-            ))} // Optional if you want filtering to happen on button click
+            ))}
           >
             검색
           </button>
@@ -63,11 +65,9 @@ const PostsPage = () => {
         ) : (
           <p className="text-gray-500">해당 음식의 레시피를 찾을 수 없습니다.</p>
         )}
-        
       </ul>
       
     </div>
-    
   );
 };
 
