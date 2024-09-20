@@ -28,7 +28,7 @@ export default function RootLayout({ children }) {
           <div className="w-full h-110 flex flex-row">
           <input type="text" className="w-450 h-38 border-2"/>
           <button className="w-68 h-38 outline-black bg-gray-300">
-            <Link href={/recipe}>recipe</Link>
+            <Link href='/recipe'>recipe</Link>
           </button>
           
           </div>
