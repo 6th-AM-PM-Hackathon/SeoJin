@@ -13,7 +13,7 @@ export default function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-     fetch('api/post', {
+    fetch('/api/post', {
             method: 'POST',
             headers: {
               "Content-Type": "application/json",
@@ -26,7 +26,6 @@ export default function Login() {
                     const message = await r.text();
                     alert(message);
                 }
-                const response = await r.json()
                 alert("회원가입 성공")
                 router.push(`/login`)
             })
